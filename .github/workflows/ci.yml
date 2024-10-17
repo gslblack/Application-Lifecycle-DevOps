@@ -13,11 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+        #install java
       - name: Setup Java JDK
         uses: actions/setup-java@v4
         with:
           java-version: '17' 
-          distribution: 'temurin'
-
+          #mvn testes
       - name: Run Maven tests
-        run: mvn test  #testemvn
+        run: mvn test
