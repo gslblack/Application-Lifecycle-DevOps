@@ -10,11 +10,13 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     steps:
-      - name: Git Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Setup Java JDK
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
-          java-version: '17'
+          java-version: '17' 
+
+      - name: Run Maven tests
+        run: mvn test
