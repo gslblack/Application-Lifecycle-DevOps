@@ -21,6 +21,23 @@ jobs:
           distribution: 'temurin'
 
 
-          #mvn testes
+      #mvn testes
       - name: Run Maven tests
         run: mvn test
+
+
+      #docker
+      - name: Run Checkstyle
+        run: mvn checkstyle:check
+
+      - name: Run Security Check
+        run: mvn org.owasp:dependency-check-maven:check
+
+      - name: Build Docker Image
+        run: docker-compose -f docker-compose.yml build
+
+      - name: Run Docker Containers
+        run: docker-compose -f docker-compose.yml up -d
+
+      - name: Run Functional Tests
+        run: mvn test -Pfunctional-test
