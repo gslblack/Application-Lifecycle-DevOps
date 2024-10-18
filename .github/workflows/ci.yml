@@ -25,7 +25,13 @@ jobs:
       - name: Run Maven tests
         run: mvn test
 
-      # 4. Verificação básica do Docker Compose
+      # 4. Instalação do Docker Compose
+      - name: Install Docker Compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-compose
+
+      # 5. Verificação básica do Docker Compose
       - name: Verify Docker Compose
         run: |
           docker-compose ps
