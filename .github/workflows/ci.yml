@@ -1,0 +1,40 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - staging
+      - producao
+
+jobs: 
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Checkout do código
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Instalação do Java
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      # 3. Execução dos testes Maven
+      - name: Run Maven tests
+        run: mvn test
+
+      # 4. Instalação do Docker Compose
+      - name: Install Docker Compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-compose
+
+      # 5. Verificação básica do Docker Compose
+      - name: Verify Docker Compose
+        run: |
+          docker-compose ps
+
+
+        
